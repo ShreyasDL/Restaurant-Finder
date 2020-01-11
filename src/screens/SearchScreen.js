@@ -1,23 +1,18 @@
 import React from 'react'
-import { TextInput, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import SearchBar from '../components/SearchBar'
 
 const SearchScreen = () => {
   return (
-      <View style = { styles.viewStyle }>
+      <View >
         <SearchBar />
-          <TextInput />
+          <Text>Search Screen </Text>
       </View>
   )
 }
 
 const styles = StyleSheet.create({
-  viewStyle : {
-    height : 50,
-    backgroundColor : '#F0EEEE',
-    margin : 15,
-    borderRadius : 5
-  }
+
 })
 
 export default SearchScreen
