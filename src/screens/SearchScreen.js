@@ -8,7 +8,7 @@ const SearchScreen = () => {
   const [results , setResults] = useState([])
   const [errorMessage , setErrorMessage] = useState('')
 
-  const searchApi = async () => {
+  const searchApi = async (initialTerm) => {
       try {
               const responseFromApi = await foursquare.get('/search',{
                   params : {
@@ -16,7 +16,7 @@ const SearchScreen = () => {
                   client_id : 'UMKW4DAWHH3JNEKJK30GSFVXV1I4NEXMTWJXX2S1HJAMNKJI',
                   client_secret : 'FH1GPRDAHI025P1R203M0C30TKOVC1HUJCYB3MIKNV0F0P3X',
                   v : 20200112,
-                  query : searchTerm
+                  query : initialTerm
                 }
               })
               setResults(responseFromApi.data.response.venues)
@@ -25,12 +25,16 @@ const SearchScreen = () => {
               console.log(err)
           }
   }
+
+  // CALL searchApi when Component first rendered
+  // searchApi('coffee')  BAD CODE !!!! 
+
   return (
       <View >
         <SearchBar
             searchTerm  = { searchTerm }
             onSearchTermChange = { setSearchTerm }
-            onSearchTermSubmit = { searchApi }
+            onSearchTermSubmit = { () = > searchApi(searchTerm) }
         />
           { errorMessage ? <Text>{ errorMessage }</Text> : null}
           <Text> We have found { results.length } results </Text>
