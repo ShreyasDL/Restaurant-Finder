@@ -6,8 +6,16 @@ import ResultsList from '../components/ResultsList'
 
 const SearchScreen = () => {
   const [searchTerm , setSearchTerm] = useState('')
-  const [searchApi , results , errorMessage] = useResults()
+  const [searchApi , results , errorMessage ] = useResults()
+
   console.log(results)
+  let b =[] , i =0
+  for (let a of results) {
+    b[i] = a.id
+    i++
+  }
+  console.log(b)
+
   return (
       <View >
         <SearchBar
